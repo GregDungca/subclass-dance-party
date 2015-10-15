@@ -76,7 +76,12 @@ $(document).ready(function() {
   //   ctx.fillRect(25,25,100,100);
   // }
 
-  draw();
+  $('#canvas').on('click', function(event) {
+    var b = new makeBall(event.pageX, event.pageY);
+    // setInterval(b.draw, 10);
+    setInterval(b.draw.bind(b), 10);
+
+  });
 
 });
   
