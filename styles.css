@@ -28,3 +28,9 @@ body, a:link, a:visited, a:active{
 .common{
   position:absolute;
 }
+.baton {
+  border-color: blue;
+  border-width: 10px 2px;
+  border-style: solid;
+  position: absolute;
+}
