@@ -1,6 +1,17 @@
 $(document).ready(function() {
   window.dancers = [];
 
+  canvas.width = document.body.clientWidth;
+  canvas.height = document.body.clientHeight;
+
+  var draw = function() {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(25,25,100,100);
+  }
+
   $(".addBlinkyDancerButton").on("click", function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -43,7 +54,7 @@ $(document).ready(function() {
     $('body').append(dancer.$node);
   });
 
-    $(".addBatonButton").on("click", function(event) {
+  $(".addBatonButton").on("click", function(event) {
 
     var dancerMakerFunctionName = $(this).data("data-dancer-maker-function-name");
 
@@ -56,5 +67,26 @@ $(document).ready(function() {
     );
     $('body').append(dancer.$node);
   });
-});
 
+  // var draw = function() {
+  //   var canvas = document.getElementByClass('canvas');
+  //   var ctx = canvas.getContext('2d');
+
+  //   ctx.fillStyle = 'green';
+  //   ctx.fillRect(25,25,100,100);
+  // }
+
+  draw();
+
+});
+  
+
+/* ** CANVAS**
+1) var canvas = document.getElementByClass('canvas');
+   var ctx = canvas.getContext('2d');
+  
+  on startup need to retrieve the canvas DOM element
+
+2) 
+
+*/
