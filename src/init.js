@@ -5,6 +5,12 @@ $(document).ready(function() {
   canvas.width = document.body.clientWidth - 150;
   canvas.height = document.body.clientHeight - 150;
 
+  var grd = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+  grd.addColorStop(0, '#ECECEC');
+  grd.addColorStop(1, '#6C7A89');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
   //ball array
   var ballsArr = [];
 
@@ -111,6 +117,12 @@ $(document).ready(function() {
     //Clear canvas
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    var grd = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+    grd.addColorStop(0, '#ECECEC');
+    grd.addColorStop(1, '#6C7A89');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
 
 

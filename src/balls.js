@@ -1,6 +1,6 @@
 var makeBall = function (xAxis, yAxis) {
-  var colors = ['red','blue','yellow'];
-  var color = colors[Math.floor(Math.random() * 3)];
+  var colors = ['rgba(142,68,173,0.7)','rgba(217,30,24,0.7)','rgba(34,167,240,0.7)','rgba(27,188,155,0.7)','rgba(243,156,18,0.7)'];
+  var color = colors[Math.floor(Math.random() * colors.length)];
 
   this.color = color;
   this.radius = 25;
@@ -20,7 +20,6 @@ makeBall.prototype.draw = function() {
 
 
   ctx.beginPath();
-  // ctx.moveTo(120,120);
   ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI*2, true);
   ctx.closePath();
   ctx.fillStyle = this.color;

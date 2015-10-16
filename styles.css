@@ -40,7 +40,7 @@ body, a:link, a:visited, a:active{
 div #canvas {
   display: block;
   margin: 75px 75px;
-  border-style: solid;
+  border-style: none;
   border-color: white;
   border-width: 1px;
 }
