@@ -1,6 +1,7 @@
 $(document).ready(function() {
   window.dancers = [];
-
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
   canvas.width = document.body.clientWidth - 150;
   canvas.height = document.body.clientHeight - 150;
 
@@ -73,13 +74,45 @@ $(document).ready(function() {
     ballsArr.push(new makeBall(event.pageX - 75, event.pageY - 107));
   });
 
-  setInterval(drawAllBalls, 10);
+  $('.lineUpButton').on('click', function(event) {
+    clearInterval(drawAllBallsInterval);
+    var lineUpInterval = setInterval(lineUp, 10);
+
+    function lineUp() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var midpoint = canvas.height / 2;
+      var timing = 20;
+      if (ballsArr[0].yAxis === midpoint) {
+        clearInterval(lineUpInterval);
+      }
+      // distance 
+        // yAxis = current yAxis - midpoint
+        // xAxis = current xAxis
+      for ( var i = 0; i < ballsArr.length; i ++ ) {
+        //ballsArr[i].xAxis -= ballsArr[i].moveX;
+        ballsArr[i].moveLineUpY = midpoint - ballsArr[i].yAxis - ballsArr[i].moveY;
+        ballsArr[i].yAxis += ballsArr[i].moveLineUpY;
+
+        ctx.beginPath();
+        ctx.arc(ballsArr[i].xAxis, ballsArr[i].yAxis, ballsArr[i].radius, 0, Math.PI*2, true);
+        ctx.closePath();
+        ctx.fillStyle = ballsArr[i].color;
+        ctx.fill();
+      }
+    }
+  });
+
+  var drawAllBallsInterval = setInterval(drawAllBalls, 10);
+
+
 
   function drawAllBalls() {
     //Clear canvas
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
 
     //Loop through all balls and draw
     for ( var i = 0; i < ballsArr.length; i ++ ) {
