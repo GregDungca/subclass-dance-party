@@ -3,9 +3,9 @@ $(document).ready(function() {
 
   canvas.width = document.body.clientWidth - 150;
   canvas.height = document.body.clientHeight - 150;
-  // canvas.width = 500;
-  // canvas.height = 500;
 
+  //ball array
+  var ballsArr = [];
 
   var draw = function() {
     var canvas = document.getElementById('canvas');
@@ -70,10 +70,38 @@ $(document).ready(function() {
 
 
   $('#canvas').on('click', function(event) {
-    var b = new makeBall(event.pageX - 75, event.pageY - 107);
-    setInterval(b.draw.bind(b), 10);
-
+    ballsArr.push(new makeBall(event.pageX - 75, event.pageY - 107));
   });
+
+  setInterval(drawAllBalls, 10);
+
+  function drawAllBalls() {
+    //Clear canvas
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //Loop through all balls and draw
+    for ( var i = 0; i < ballsArr.length; i ++ ) {
+      var proposedMovementX = ballsArr[i].xAxis + ballsArr[i].moveX;
+      var proposedMovementY = ballsArr[i].yAxis + ballsArr[i].moveY;
+
+      ctx.beginPath();
+      ctx.arc(ballsArr[i].xAxis, ballsArr[i].yAxis, ballsArr[i].radius, 0, Math.PI*2, true);
+      ctx.closePath();
+      ctx.fillStyle = ballsArr[i].color;
+      ctx.fill();
+
+      ballsArr[i].moveX = proposedMovementX < ballsArr[i].radius || proposedMovementX > canvas.width - ballsArr[i].radius ? -1 * ballsArr[i].moveX : ballsArr[i].moveX;
+      ballsArr[i].moveY = proposedMovementY < ballsArr[i].radius || proposedMovementY > canvas.height - ballsArr[i].radius ? -1 * ballsArr[i].moveY : ballsArr[i].moveY;
+      ballsArr[i].xAxis += ballsArr[i].moveX;
+      ballsArr[i].yAxis += ballsArr[i].moveY;
+    }
+
+    
+  }
+
+
 
 });
   
