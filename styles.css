@@ -16,6 +16,8 @@ body, a:link, a:visited, a:active{
 .topbar{
   height:32px;
   background-color: #555;
+  margin: 0 auto;
+  padding: 0 0;
 }
 .title{
   background-color: #777;
@@ -34,3 +36,12 @@ body, a:link, a:visited, a:active{
   border-style: solid;
   position: absolute;
 }
+
+div #canvas {
+  display: block;
+  margin: 75px 75px;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+}
+

@@ -1,15 +1,15 @@
 $(document).ready(function() {
   window.dancers = [];
 
-  canvas.width = document.body.clientWidth;
-  canvas.height = document.body.clientHeight;
+  canvas.width = document.body.clientWidth - 150;
+  canvas.height = document.body.clientHeight - 150;
+  // canvas.width = 500;
+  // canvas.height = 500;
+
 
   var draw = function() {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = 'green';
-    ctx.fillRect(25,25,100,100);
   }
 
   $(".addBlinkyDancerButton").on("click", function(event) {
@@ -68,17 +68,9 @@ $(document).ready(function() {
     $('body').append(dancer.$node);
   });
 
-  // var draw = function() {
-  //   var canvas = document.getElementByClass('canvas');
-  //   var ctx = canvas.getContext('2d');
-
-  //   ctx.fillStyle = 'green';
-  //   ctx.fillRect(25,25,100,100);
-  // }
 
   $('#canvas').on('click', function(event) {
-    var b = new makeBall(event.pageX, event.pageY);
-    // setInterval(b.draw, 10);
+    var b = new makeBall(event.pageX - 75, event.pageY - 107);
     setInterval(b.draw.bind(b), 10);
 
   });
@@ -86,12 +78,3 @@ $(document).ready(function() {
 });
   
 
-/* ** CANVAS**
-1) var canvas = document.getElementByClass('canvas');
-   var ctx = canvas.getContext('2d');
-  
-  on startup need to retrieve the canvas DOM element
-
-2) 
-
-*/
